@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 //import routes
 const postRoute = require('./routes/posts');
 
-app.use('/posts',postRoute);
+app.use('/api',postRoute);
 
 // get method
 app.get('/',(req,res)=> {
@@ -22,7 +22,7 @@ app.get('/',(req,res)=> {
 //connect to dp
 
 mongoose.connect(
-    'mongodb://localhost:27017/medicine',
+    process.env.DB_CONNECTION,
     { useUnifiedTopology: true, useNewUrlParser: true },
     () => 
     {

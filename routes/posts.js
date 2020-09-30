@@ -27,10 +27,11 @@ router.get('/data_merged/get_medicinesSuggestions',async (req,res,next)=>{
         await Medicines.find({ '$or': [ { 'brand':{ '$regex':'^'+req.query.input,'$options':'i'} },
         { 'ingredients': {'$regex':'.'+req.query.input,'$options':'i'} }
       ] })
-        .then(data =>{
-            // temp_data = filter(data);
-            res.json({result:data});
-        }
+        .limit(25)
+        .then(data =>
+            {
+                res.json({result:data});
+            }
             
         );
             
